@@ -1,0 +1,9 @@
+# Executable files
+chmac
+jvdo
+mkdo
+texdo
+texenv
+
+# not expose files
+change_MAC_address.sh
