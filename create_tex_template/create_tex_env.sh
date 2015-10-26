@@ -14,6 +14,6 @@ cd ${FOLDERNAME}
 touch main.tex
 mkdir programs images text
 
-cp -R ~/.script/create_tex_template/tex_template `pwd`
+cp -R ~/.scripts/create_tex_template/tex_template `pwd`
 cp `pwd`/tex_template/template.tex `pwd`/main.tex
 rm `pwd`/tex_template/template.tex
