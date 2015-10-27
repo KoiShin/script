@@ -1,10 +1,11 @@
 #! /bin/bash
 
-check_compile() {
+export warning="LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right."
+function check_compile() {
     LOGFILE=./${FILENAME}.log
     while read text
     do
-        if [ "$text" = "LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right." ]; then
+        if [ "$text" = "$warning" ]; then
             echo 1
             exit
         fi
