@@ -4,6 +4,7 @@ jvdo
 mkdo
 texdo
 texenv
+brackets
 
 # not expose files
 change_MAC_address.sh
