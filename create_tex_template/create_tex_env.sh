@@ -1,7 +1,6 @@
 #! /bin/bash
 
-if [ "$1" = "" ]
-then
+if [ "$1" = "" ]; then
     echo "No argument!!"
     echo "Please enter some argument!!"
     exit

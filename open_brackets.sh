@@ -1,6 +1,6 @@
 #! /bin/bash
 
-if [ "$1" = "" ] ; then
+if [ "$1" = "" ]; then
     open -a Brackets
 else
     touch $1

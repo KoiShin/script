@@ -2,13 +2,11 @@
 
 FILENAME=${1%.*}
 
-if [ "$1" = "" ]
-then
+if [ "$1" = "" ]; then
     echo "No argument!!"
-    echo "Please enter some argument"
+    echo "Please enter some argument!!"
     exit
-elif [ "$2" = "-c" ]
-then
+elif [ "$2" = "-c" ]; then
     make ${FILENAME}
 else
     make ${FILENAME} &&
