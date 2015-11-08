@@ -9,6 +9,6 @@ fi
 
 FILENAME=${1%.*}
 
-echo "Compiling..."
+echo -e "Compiling...\n"
 javac ${FILENAME}.java &&
 java ${FILENAME}
