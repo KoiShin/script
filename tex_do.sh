@@ -16,8 +16,9 @@ function has_error() {
     exit
 }
 
-export warning="LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right."
 function needs_compile() {
+    warning="LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right."
+
     while read text
     do
         if [ "$text" = "$warning" ]; then
@@ -34,14 +35,20 @@ function platex_compile() {
     platex --kanji=utf8 ${FILENAME}.tex
 }
 
+function remove_intermediate_file() {
+    rm ${FILENAME}.aux
+    rm ${FILENAME}.dvi
+    rm ${FILENAME}.log
+}
+
 if [ "$1" = "" ]; then
     echo "No argument!!"
     echo "Please enter some argument!!"
     exit
 fi
 
-
 platex_compile
+
 if has_error; then
     exit
 fi
@@ -55,7 +62,5 @@ dvipdfmx -d5 ${FILENAME}.dvi &&
 open ${FILENAME}.pdf
 
 if [ "$2" = "clean" ]; then
-    rm ${FILENAME}.aux
-    rm ${FILENAME}.dvi
-    rm ${FILENAME}.log
+    remove_intermediate_file
 fi
