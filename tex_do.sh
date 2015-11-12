@@ -1,18 +1,37 @@
 #! /bin/bash
 
-export warning="LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right."
-function check_compile() {
-    LOGFILE=./${FILENAME}.log
+FILENAME=${1%.*}
+LOGFILE=./${FILENAME}.log
+
+function has_error() {
     while read text
     do
-        if [ "$text" = "$warning" ]; then
-            echo 1
+        if [[ "$text" =~ ^\? ]]; then
+            return 0
             exit
         fi
     done < $LOGFILE
 
-    echo 0
+    return 1
     exit
+}
+
+export warning="LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right."
+function needs_compile() {
+    while read text
+    do
+        if [ "$text" = "$warning" ]; then
+            return 0
+            exit
+        fi
+    done < $LOGFILE
+
+    return 1
+    exit
+}
+
+function platex_compile() {
+    platex --kanji=utf8 ${FILENAME}.tex
 }
 
 if [ "$1" = "" ]; then
@@ -21,19 +40,21 @@ if [ "$1" = "" ]; then
     exit
 fi
 
-FILENAME=${1%.*}
 
-is_compile=1
-until [ $is_compile -eq 0 ]
+platex_compile
+if has_error; then
+    exit
+fi
+
+while needs_compile
 do
-    platex --kanji=utf8 ${FILENAME}.tex
-    is_compile=`check_compile`
+    platex_compile
 done
 
 dvipdfmx -d5 ${FILENAME}.dvi &&
 open ${FILENAME}.pdf
 
-if [ "$2" = "-d" ]; then
+if [ "$2" = "clean" ]; then
     rm ${FILENAME}.aux
     rm ${FILENAME}.dvi
     rm ${FILENAME}.log
