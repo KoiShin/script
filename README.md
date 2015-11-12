@@ -12,7 +12,7 @@
 - [tex_do.sh](https://github.com/KoiShin/shell_scripts/blob/master/tex_do.sh)
     - LaTeXに対応
     - LaTeX -> DVI -> PDF、そしてプレビューで開くところまで行う
-    - `-d`オプションをつけると中間ファイル(aux, dvi, log)を削除する
+    - `clean`オプションをつけると中間ファイル(aux, dvi, log)を削除する
 
 ### other
 - [create_tex_env.sh](https://github.com/KoiShin/shell_scripts/blob/master/create_tex_template/create_tex_env.sh)
