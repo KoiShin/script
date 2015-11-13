@@ -35,7 +35,7 @@ function platex_compile() {
     yes x |  platex --kanji=utf8 ${FILENAME}.tex
 }
 
-function remove_intermediate_file() {
+function remove_intermediate_files() {
     rm ${FILENAME}.aux
     rm ${FILENAME}.dvi
     rm ${FILENAME}.log
@@ -61,6 +61,6 @@ done
 dvipdfmx -d5 ${FILENAME}.dvi &&
 open ${FILENAME}.pdf
 
-if [ "$2" = "clean" ]; then
-    remove_intermediate_file
+if [ "$2" = "--clean" ]; then
+    remove_intermediate_files
 fi
