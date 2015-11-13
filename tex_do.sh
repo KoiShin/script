@@ -32,7 +32,7 @@ function needs_compile() {
 }
 
 function platex_compile() {
-    yes x |  platex --kanji=utf8 ${FILENAME}.tex
+    yes x | platex --kanji=utf8 ${FILENAME}.tex
 }
 
 function remove_intermediate_files() {
@@ -50,11 +50,13 @@ fi
 platex_compile
 
 if has_error; then
+    echo "Some error occurred!!"
     exit
 fi
 
 while needs_compile
 do
+    echo "It will compile again."
     platex_compile
 done
 
@@ -62,5 +64,6 @@ dvipdfmx -d5 ${FILENAME}.dvi &&
 open ${FILENAME}.pdf
 
 if [ "$2" = "--clean" ]; then
+    echo "Delete intermediate files. ($1.aux, $1.dvi, $1.log)"
     remove_intermediate_files
 fi
