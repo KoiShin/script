@@ -32,7 +32,7 @@ function needs_compile() {
 }
 
 function platex_compile() {
-    platex --kanji=utf8 ${FILENAME}.tex
+    yes x |  platex --kanji=utf8 ${FILENAME}.tex
 }
 
 function remove_intermediate_file() {
