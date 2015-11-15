@@ -56,7 +56,7 @@ fi
 
 while needs_compile
 do
-    echo "It will compile again."
+    echo -e "\nIt will compile again."
     platex_compile
 done
 
