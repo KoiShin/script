@@ -16,12 +16,27 @@ function has_error() {
     exit
 }
 
-function needs_compile() {
-    warning="LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right."
+function has_warning() {
+    warning="Warning"
 
     while read text
     do
-        if [ "$text" = "$warning" ]; then
+        if echo "$text" | grep -q "$warning"; then
+            return 0
+            exit
+        fi
+    done < $LOGFILE
+
+    return 1
+    exit
+}
+
+function needs_compile() {
+    warning_of_label="LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right."
+
+    while read text
+    do
+        if [ "$text" = "$warning_of_label" ]; then
             return 0
             exit
         fi
@@ -59,6 +74,13 @@ do
     echo -e "\nIt will compile again."
     platex_compile
 done
+
+if [ "$2" = "--severe" ]; then
+    if has_warning; then
+        echo "Some warning occurred!!"
+        exit
+    fi
+fi
 
 dvipdfmx -d5 ${FILENAME}.dvi &&
 open ${FILENAME}.pdf
