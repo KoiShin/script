@@ -75,11 +75,9 @@ do
     platex_compile
 done
 
-if [ "$2" = "--severe" ]; then
-    if has_warning; then
-        echo "Some warning occurred!!"
-        exit
-    fi
+if [ "$2" = "--severe" ] && has_warning; then
+    echo "Some warning occurred!!"
+    exit
 fi
 
 dvipdfmx -d5 ${FILENAME}.dvi &&
