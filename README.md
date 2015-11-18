@@ -13,6 +13,7 @@
     - LaTeXに対応
     - LaTeX -> DVI -> PDF、そしてプレビューで開くところまで行う
     - `--clean`オプションをつけると中間ファイル(aux, dvi, log)を削除する
+    - `--severe`オプションをつけるとWarningがあったらコンパイルをやめる
 
 ### other
 - [create_tex_env.sh](https://github.com/KoiShin/shell_scripts/blob/master/create_tex_template/create_tex_env.sh)
