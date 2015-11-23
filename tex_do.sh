@@ -17,11 +17,9 @@ function has_error() {
 }
 
 function has_warning() {
-    warning="Warning"
-
     while read text
     do
-        if echo "$text" | grep -q "$warning"; then
+        if [[ "$text" =~ ^Warning ]]; then
             return 0
             exit
         fi
