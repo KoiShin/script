@@ -6,7 +6,7 @@ LOGFILE=./${FILENAME}.log
 function has_error() {
     while read text
     do
-        if [[ "$text" =~ ^\? ]]; then
+        if [[ "$text" =~ ^\? ]] || [[ "$text" =~ ^\! ]]; then
             return 0
             exit
         fi
