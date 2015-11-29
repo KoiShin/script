@@ -5,6 +5,8 @@ mkdo
 texdo
 texenv
 brackets
+javalipse
 
 # not expose files
 change_MAC_address.sh
+java_for_eclipse.sh
