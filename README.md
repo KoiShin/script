@@ -6,7 +6,7 @@
 コンパイルと実行を同時に行うスクリプト
 - [make_do.sh](https://github.com/KoiShin/shell_scripts/blob/master/make_do.sh)
     - C言語、C++に対応
-    - `-c` オプションをつけるとコンパイルのみ行う(それなら`make`コマンドでいいではないかと思うかもしれないが、ところがどっこい、`make`コマンドには補完がきかないのだ!!)
+    - `-c` オプションをつけるとコンパイルのみ行う(`make`コマンドはファイル名の補完がきかないため)
 - [java_do.sh](https://github.com/KoiShin/shell_scripts/blob/master/java_do.sh)
     - JAVAに対応
 - [tex_do.sh](https://github.com/KoiShin/shell_scripts/blob/master/tex_do.sh)
